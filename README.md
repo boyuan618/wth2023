@@ -20,13 +20,16 @@ Returns the results from google in json format of:
     "Status": Status,
     "Results": [
         {
-            "Title_1", Description_1
+            "Title", Title_1
+            "Description", Description_1
         }, 
         {
-            "Title_2", Description_2
+            "Title", Title_2
+            "Description", Description_2
         },
         {
-            "Title_3", Description_3
+            "Title", Title_3
+            "Description", Description_3
         }
     ]
 }

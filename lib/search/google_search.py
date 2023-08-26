@@ -39,9 +39,9 @@ def search(query_string: str) -> dict:
     else:
         results["Status"] = 503
         
-    results["Results"] = [{result.title:result.description} for result in google_results]
+    results["Results"] = [{"Title" : result.title, "Description" : result.description.replace("\xa0", "")} for result in google_results]
 
-    print(results)
+    
     return results
 
 #print(search("Where are good places to eat in Singapore"))

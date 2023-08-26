@@ -6,7 +6,7 @@ from lib.internet import internet_connection
 import googlesearch
 
 from time import sleep
-
+import json
 
 def init_app(url: str):
     """
@@ -41,8 +41,8 @@ def init_app(url: str):
             
             else:
                 search_results = {'Query': query_string, 'Status': 500, 'Results': []}
-                
-            return search_results
+                   
+            return json.dumps(search_results)
             
         return None
             
