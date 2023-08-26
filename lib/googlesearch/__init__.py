@@ -19,7 +19,7 @@ def _req(term, results, lang, start, proxies, timeout):
             "start": start,
         },
         proxies=proxies,
-        timeout=1,
+        timeout=timeout,
     )
 
     resp.raise_for_status()

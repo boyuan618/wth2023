@@ -1,7 +1,6 @@
 from flask import Flask, request
 
 from lib.search import search
-from lib.call import call
 from lib.internet import internet_connection
 
 import googlesearch
@@ -43,9 +42,8 @@ def init_app(url: str):
             else:
                 search_results = {'Query': query_string, 'Status': 500, 'Results': []}
                 
-            #Sends them back out
-            call(url, search_results)
-        
+            return search_results
+            
         return None
             
     
