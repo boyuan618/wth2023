@@ -2,7 +2,11 @@ from flask import Flask, request
 
 from lib.search import search
 from lib.call import call
+from lib.internet import internet_connection
 
+import googlesearch
+
+from time import sleep
 
 
 def init_app(url: str):
@@ -26,14 +30,23 @@ def init_app(url: str):
         Retreives query string from the brain and sends the query to the google search function, then sends it back to the brain
         """
         if request.method == "POST":
+            
             #Retrieve query string
-            query_string = request.form.get("Query")
+            query_string = dict(request.json)["Query"]
             
-            #Google Search
-            search_results = search(query_string)
+            search_results = {}
             
+            if internet_connection():
+                #Google Search
+                search_results = search(query_string)
+            
+            else:
+                search_results = {'Query': query_string, 'Status': 500, 'Results': []}
+                
             #Sends them back out
             call(url, search_results)
+        
+        return None
             
     
     return app

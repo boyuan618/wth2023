@@ -1,1 +1,1 @@
-from google_search import search
+from lib.search.google_search import search

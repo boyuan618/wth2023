@@ -1,4 +1,4 @@
-import googlesearch
+import lib.googlesearch
 
 def search(query_string: str) -> dict:
     """
@@ -28,20 +28,20 @@ def search(query_string: str) -> dict:
                         } 
     """
     results = {}
-    
+    print(query_string)
     #Query google
-    google_results = googlesearch.search(query_string, num_results=3, advanced=True)
-    
+    google_results = lib.googlesearch.search(query_string, num_results=3, advanced=True)
+
     #Parse results dictionary
     results["Query"] = query_string
-    results["Status"] = 200
-    results["Results"] = []
-    
-    #Adding search results
-    for google_result in google_results:
-        result = {}
-        result[google_result.title] = google_result.description
+    if google_results != []:
+        results["Status"] = 200
+    else:
+        results["Status"] = 503
         
-        results["Results"].append(result)
-    
+    results["Results"] = [{result.title:result.description} for result in google_results]
+
+    print(results)
     return results
+
+#print(search("Where are good places to eat in Singapore"))
