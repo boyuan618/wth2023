@@ -2,8 +2,8 @@
 from time import sleep
 from bs4 import BeautifulSoup
 from requests import get
-from .user_agents import get_useragent
-
+from lib.googlesearch.user_agents import get_useragent
+import re
 
 def _req(term, results, lang, start, proxies, timeout):
 
@@ -79,10 +79,12 @@ def search(term, num_results=10, lang="en", proxy=None, advanced=False, sleep_in
                 
             if description_box:
                 description = description_box.text
+                description = re.sub("\d{1,2}?\s\w{3,9}?\s\d{4}?\s— ", "", description).strip("...").strip()
+                
                 if link and title and description:
                     start += 1
                     if advanced:
-                        results.append(SearchResult(link["href"], title.text, description))
+                        results.append(SearchResult(link["href"], title.text.strip("...").strip(), description))
                     else:
                         results.append(link["href"])
 

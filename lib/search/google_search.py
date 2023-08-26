@@ -28,7 +28,7 @@ def search(query_string: str) -> dict:
                         } 
     """
     results = {}
-    print(query_string)
+
     #Query google
     google_results = lib.googlesearch.search(query_string, num_results=3, advanced=True)
 
@@ -39,7 +39,7 @@ def search(query_string: str) -> dict:
     else:
         results["Status"] = 503
         
-    results["Results"] = [{"Title" : result.title, "Description" : result.description.replace("\xa0", "")} for result in google_results]
+    results["Results"] = [{"Title" : result.title, "Description" : result.description} for result in google_results]
 
     
     return results
