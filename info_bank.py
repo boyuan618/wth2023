@@ -1,6 +1,6 @@
 from lib.startup import init_app
 
-URL = "127.0.0.1:10000"
+URL = "127.0.0.1:10000/google_results"
 
 app = init_app(URL)
 
