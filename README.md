@@ -24,6 +24,14 @@ Returns the results from google in json format of:
         }, 
         {
             "Title_2", Description_2
+        },
+        {
+            "Title_3", Description_3
         }
     ]
 }
+
+Status Codes: 
+    200: Ok
+    500: No internet
+    503: No result found
